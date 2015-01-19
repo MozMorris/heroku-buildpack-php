@@ -9,6 +9,7 @@ set -o pipefail
 set -eux
 
 DEFAULT_VERSION="1.6.0"
+NPS_VERSION="1.9.32.3"
 dep_version=${VERSION:-$DEFAULT_VERSION}
 dep_dirname=nginx-${dep_version}
 dep_archive_name=${dep_dirname}.tar.gz
@@ -19,6 +20,9 @@ echo "-----> Building Nginx ${dep_version}..."
 curl -L ${dep_url} | tar xz
 curl -L http://zlib.net/zlib-1.2.8.tar.gz | tar xz -C ${dep_dirname}
 curl -L http://sourceforge.net/projects/pcre/files/pcre/8.34/pcre-8.34.tar.gz | tar xz -C ${dep_dirname}
+curl -L https://github.com/pagespeed/ngx_pagespeed/archive/release-${NPS_VERSION}-beta.tar.gz | tar xz -C ${dep_dirname}
+curl -L https://dl.google.com/dl/page-speed/psol/${NPS_VERSION}.tar.gz | tar xz -C ${dep_dirname}/ngx_pagespeed-release-${NPS_VERSION}-beta
+
 
 pushd ${dep_dirname}
 ETC=${OUT_PREFIX}/etc
@@ -37,7 +41,8 @@ VAR=${OUT_PREFIX}/var
     --error-log-path=${VAR}/log/nginx/error.log \
     --with-http_realip_module \
     --with-pcre=pcre-8.34 \
-    --with-zlib=zlib-1.2.8
+    --with-zlib=zlib-1.2.8 \
+    --add-module=ngx_pagespeed-release-${NPS_VERSION}-beta
 make -s -j 9
 make install -s
 # this doesn't get created
