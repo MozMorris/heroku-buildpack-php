@@ -28,6 +28,7 @@ pushd ${dep_dirname}
 ETC=${OUT_PREFIX}/etc
 VAR=${OUT_PREFIX}/var
 ./configure \
+    --with-debug \
     --prefix=${OUT_PREFIX} \
     --conf-path=${ETC}/nginx/nginx.conf \
     --pid-path=${VAR}/run/nginx.pid \
