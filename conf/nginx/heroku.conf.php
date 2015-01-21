@@ -2,6 +2,12 @@ http {
     include       mime.types;
     default_type  application/octet-stream;
 
+    pagespeed on;
+    pagespeed InstallCrashHandler on;
+
+    # Needs to exist and be writable by nginx.  Use tmpfs for best performance.
+    pagespeed FileCachePath "/tmp/";
+
     #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
     #                  '$status $body_bytes_sent "$http_referer" '
     #                  '"$http_user_agent" "$http_x_forwarded_for"';
