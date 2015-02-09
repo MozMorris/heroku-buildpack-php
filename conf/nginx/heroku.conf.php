@@ -3,7 +3,7 @@ http {
     default_type  application/octet-stream;
 
     worker_rlimit_core 500m;
-    working_directory /path/to/corefiles;
+    working_directory /tmp;
 
     pagespeed on;
     pagespeed InstallCrashHandler on;
