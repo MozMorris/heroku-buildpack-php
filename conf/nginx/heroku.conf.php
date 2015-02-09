@@ -1,15 +1,15 @@
+worker_rlimit_core 500m;
+working_directory /tmp;
+
 http {
     include       mime.types;
     default_type  application/octet-stream;
-
-    worker_rlimit_core 500m;
-    working_directory /tmp;
 
     pagespeed on;
     pagespeed InstallCrashHandler on;
 
     # Needs to exist and be writable by nginx.  Use tmpfs for best performance.
-    pagespeed FileCachePath "/tmp/";
+    pagespeed FileCachePath "/tmp";
 
     #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
     #                  '$status $body_bytes_sent "$http_referer" '
