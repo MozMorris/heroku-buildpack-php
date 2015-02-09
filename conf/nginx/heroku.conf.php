@@ -22,7 +22,7 @@ http {
 
     #keepalive_timeout  0;
     keepalive_timeout  65;
-
+}
     #gzip  on;
 
     fastcgi_buffers 256 4k;
@@ -61,7 +61,7 @@ http {
 
         root "<?=getenv('DOCUMENT_ROOT')?:getenv('HEROKU_APP_DIR')?:getcwd()?>";
 
-        error_log /app/tmp/heroku.nginx_error.<?=getenv('PORT')?:'8080'?>.log debug
+        error_log /app/tmp/heroku.nginx_error.<?=getenv('PORT')?:'8080'?>.log debug;
         access_log /app/tmp/heroku.nginx_access.<?=getenv('PORT')?:'8080'?>.log;
 
         include "<?=getenv('HEROKU_PHP_NGINX_CONFIG_INCLUDE')?>";
