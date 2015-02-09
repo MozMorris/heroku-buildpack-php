@@ -1,6 +1,6 @@
 worker_processes  1;
 worker_rlimit_core  500m;
-working_directory /app/.heroku/php/var/log/nginx/;
+working_directory /tmp/;
 
 http {
     include       mime.types;
@@ -9,7 +9,7 @@ http {
     pagespeed on;
     pagespeed InstallCrashHandler on;
     pagespeed FetchWithGzip on;
-    pagespeed FileCachePath /app/.heroku/php/var/log/nginx/;
+    pagespeed FileCachePath /tmp/;
 
     #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
     #                  '$status $body_bytes_sent "$http_referer" '
