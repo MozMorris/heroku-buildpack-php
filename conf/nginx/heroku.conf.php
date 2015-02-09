@@ -22,7 +22,7 @@ http {
 
     #keepalive_timeout  0;
     keepalive_timeout  65;
-}
+
     #gzip  on;
 
     fastcgi_buffers 256 4k;
