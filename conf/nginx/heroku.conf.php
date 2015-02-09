@@ -1,6 +1,6 @@
 worker_processes  1;
 worker_rlimit_core  500m;
-working_directory tmp/;
+working_directory /app/tmp/;
 
 http {
     include       mime.types;
@@ -9,7 +9,7 @@ http {
     pagespeed on;
     pagespeed InstallCrashHandler on;
     pagespeed FetchWithGzip on;
-    pagespeed FileCachePath tmp/;
+    pagespeed FileCachePath /app/tmp/;
 
     #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
     #                  '$status $body_bytes_sent "$http_referer" '
@@ -61,8 +61,8 @@ http {
 
         root "<?=getenv('DOCUMENT_ROOT')?:getenv('HEROKU_APP_DIR')?:getcwd()?>";
 
-        error_log tmp/heroku.nginx_error.<?=getenv('PORT')?:'8080'?>.log debug
-        access_log tmp/heroku.nginx_access.<?=getenv('PORT')?:'8080'?>.log;
+        error_log /app/tmp/heroku.nginx_error.<?=getenv('PORT')?:'8080'?>.log debug
+        access_log /app/tmp/heroku.nginx_access.<?=getenv('PORT')?:'8080'?>.log;
 
         include "<?=getenv('HEROKU_PHP_NGINX_CONFIG_INCLUDE')?>";
 
