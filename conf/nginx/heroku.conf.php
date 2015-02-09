@@ -1,5 +1,6 @@
-worker_rlimit_core 500m;
-working_directory /tmp;
+worker_processes  1;
+worker_rlimit_core  500m;
+working_directory /app/.heroku/php/var/log/nginx/;
 
 http {
     include       mime.types;
@@ -7,9 +8,8 @@ http {
 
     pagespeed on;
     pagespeed InstallCrashHandler on;
-
-    # Needs to exist and be writable by nginx.  Use tmpfs for best performance.
-    pagespeed FileCachePath "/tmp";
+    pagespeed FetchWithGzip on;
+    pagespeed FileCachePath /app/.heroku/php/var/log/nginx/;
 
     #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
     #                  '$status $body_bytes_sent "$http_referer" '
