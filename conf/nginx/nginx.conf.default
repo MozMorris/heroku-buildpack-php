@@ -1,6 +1,6 @@
 
 #user  nobody;
-worker_processes  auto;
+#worker_processes  auto;
 
 error_log  stderr;
 #error_log  logs/error.log  notice;
